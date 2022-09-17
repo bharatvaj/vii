@@ -26,9 +26,6 @@ print_usage(int code)
 	"-F             run syntax filter only, write to stdout",
 #endif
 	"-I             use vileinit.rc to initialize",
-#if OPT_ENCRYPT
-	"-k cryptkey    for encrypted files",
-#endif
 	"-R             edit files \"read-only\" -- no writes permitted",
 #if OPT_TAGS
 #if DISP_X11			/* because -title is predefined */

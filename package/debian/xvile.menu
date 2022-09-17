@@ -1,3 +1,0 @@
-?package(xvile):needs="x11" section="Applications/Editors" title="XVile" \
-    icon="/usr/share/pixmaps/vile.mini.xpm" \
-    command="/usr/bin/xvile"

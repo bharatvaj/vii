@@ -2874,9 +2874,6 @@ modeline_modes(BUFFER *bp, char **msptr, int brief)
 #if !OPT_MAJORMODE
     PutMode(MDCMOD, "cmode");
 #endif
-#if OPT_ENCRYPT
-    PutMode(MDCRYPT, "crypt");
-#endif
     {
 #if OPT_RECORDSEP_CHOICES
 	int show = FALSE;

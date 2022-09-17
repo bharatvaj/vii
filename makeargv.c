@@ -15,9 +15,6 @@ option_has_param(const char *option)
     static const char *table[] =
     {
 	"-c",
-#if OPT_ENCRYPT
-	"-k",
-#endif
 #if OPT_TAGS
 #if DISP_X11			/* because -title is predefined */
 	"-T",

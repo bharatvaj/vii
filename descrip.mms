@@ -96,7 +96,6 @@ SRC =	main.c \
 	tags.c \
 	tbuff.c \
 	termio.c \
-	ucrypt.c \
 	undo.c \
 	version.c \
 	vl_ctype.c \
@@ -151,7 +150,6 @@ OBJ =	$(MENUS)main.obj,\
 	tags.obj,\
 	tbuff.obj,\
 	termio.obj,\
-	ucrypt.obj,\
 	undo.obj,\
 	version.obj, \
 	vl_ctype.obj, \

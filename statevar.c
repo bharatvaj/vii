@@ -709,28 +709,6 @@ var_CHAR(TBUFF **rp, const char *vp)
     return status;
 }
 
-#if OPT_ENCRYPT
-int
-var_CRYPTKEY(TBUFF **rp, const char *vp)
-{
-    if (rp) {
-	tb_scopy(rp, WRITE_ONLY);
-	return TRUE;
-    } else if (vp) {
-	beginDisplay();
-	FreeIfNeeded(cryptkey);
-	cryptkey = typeallocn(char, NKEYLEN);
-	endofDisplay();
-	if (cryptkey == 0)
-	    return no_memory("var_CRYPTKEY");
-	vl_make_encrypt_key(cryptkey, vp);
-	return TRUE;
-    } else {
-	return FALSE;
-    }
-}
-#endif
-
 #if !SMALLER
 int
 var_CURCHAR(TBUFF **rp, const char *vp)

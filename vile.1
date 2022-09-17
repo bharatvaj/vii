@@ -264,36 +264,6 @@ for C,
 which can embolden, underline, or perform coloring on program
 source code.
 Again, see the help file for more information.
-.SH "ENCRYPTION"
-The program
-.I vile-crypt
-can be used to encrypt/decrypt files using the same algorithm as
-.IR microEmac 's
-internal crypt algorithm.
-This program, which uses public domain code written by
-by Dana Hoggatt, is no longer used in vile, though it is provided for
-compatibility.
-.PP
-.I vile
-currently uses the
-.I crypt(3)
-function for encryption/decryption, which is available on most Unix systems.
-This ensures that
-.I vile
-is able to read and write files compatibly with vi
-(but not vim, which uses an different algorithm derived from info-zip).
-The editor's encryption/decryption key can be specified on the
-command line with "-k key".
-Text to be encrypted can be specified as filenames on the command
-line, or provided as the standard input.  On systems with a getpass()
-library routine, the user will be prompted for the encryption key if it is
-not given on the command line.  To accommodate systems (such as linux) where
-the getpass() library routine is not interruptible from the keyboard,
-entering a crypt-key password which ends in ^C will cause the program to
-quit.  See the help file for more information on
-.IR vile 's
-encryption support, including a discussion of a collection of macros that
-interface with GNU's gpg package.
 .SH "ENVIRONMENT VARIABLES"
 .TP
 .B VILEINIT

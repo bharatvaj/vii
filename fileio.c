@@ -524,16 +524,6 @@ ffronly(char *fn)
     return status;
 }
 
-#if OPT_ENCRYPT
-static int ffcrypting = FALSE;
-
-void
-ffdocrypt(int crypting)
-{
-    ffcrypting = crypting;
-}
-#endif
-
 #if SYS_WINNT || (SYS_MSDOS && CC_DJGPP)
 #define FFSIZE_FTELL 1
 #else
@@ -781,10 +771,6 @@ ffputc(int c)
 {
     char d = (char) c;
 
-#if OPT_ENCRYPT
-    if (ffcrypting && (ffstatus != file_is_pipe))
-	d = vl_encrypt_char(d);
-#endif
     if (i_am_dead) {
 	fflinebuf[fflinelen++] = d;
 	if (fflinelen >= NSTRING) {
@@ -874,10 +860,6 @@ ffgetline(size_t *lenp)
 	    c = vl_getc(ffp);
 	    if (feof(ffp) || ferror(ffp))
 		break;
-#if OPT_ENCRYPT
-	    if (ffcrypting && (ffstatus != file_is_pipe))
-		c = vl_encrypt_char(c);
-#endif
 	    if (c == end_of_line) {
 #if OPT_MULTIBYTE
 		/*

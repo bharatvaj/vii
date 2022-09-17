@@ -94,12 +94,6 @@ extern	void	perl_free_sub(void *);
 #endif
 #endif
 
-#if OPT_PERL || OPT_PLUGIN
-/* api.c */
-extern void api_free_private(void *);
-/* There are others as well, but the rest are found in api.h */
-#endif
-
 /* basic.c */
 extern int can_set_nmmark (int c);
 extern int column_after (int c, int col, int list);
@@ -654,10 +648,6 @@ extern int ffwopen (char *fn, int forced);
 extern int file_stat (const char *fn, struct stat *sb);
 extern void ffrewind (void);
 extern void ffseek (B_COUNT n);
-
-#if OPT_ENCRYPT
-extern void ffdocrypt (int crypting);
-#endif
 
 /* finderr.c */
 #if OPT_FINDERR
@@ -1340,15 +1330,6 @@ extern void nullterm_setpal (const char *p);
 extern void nullterm_settitle (const char *t);
 extern void nullterm_unclean (void);
 extern void nullterm_unwatchfd (int fd, long id);
-
-/* ucrypt.c */
-#if	OPT_ENCRYPT
-extern	int	vl_encrypt_char(int c);
-extern	int	vl_resetkey (BUFFER *bp, const char *fname);
-extern	void	vl_encrypt_blok (char *bptr, UINT len);
-extern	void	vl_make_encrypt_key (char *dst, const char *src);
-extern	void	vl_setup_encrypt (char *pw);
-#endif	/* OPT_ENCRYPT */
 
 /* undo.c */
 extern int  check_editable (BUFFER *bp);

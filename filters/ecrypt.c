@@ -8,9 +8,6 @@
 #define CAN_VMS_PATH 0
 #include <filters.h>
 
-# ifndef OPT_ENCRYPT
-#  define OPT_ENCRYPT 1
-# endif
 # define UINT	unsigned int
 # define ULONG	unsigned long
 

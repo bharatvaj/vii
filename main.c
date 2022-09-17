@@ -324,10 +324,6 @@ MainProgram(int argc, char *argv[])
 #if DISP_NTCONS
     int new_console = FALSE;
 #endif
-#if OPT_ENCRYPT
-    char startkey[NKEYLEN];	/* initial encryption key */
-    *startkey = EOS;
-#endif
 
     /*
      * This is needed for a fallback case in locales.
@@ -590,13 +586,6 @@ MainProgram(int argc, char *argv[])
 		    b2printf(init_bp, "source %s\n", vileinit);
 		    break;
 
-#if OPT_ENCRYPT
-		case 'k':	/* -k<key> for code key */
-		case 'K':
-		    param = GetArgVal(param);
-		    vl_make_encrypt_key(startkey, param);
-		    break;
-#endif
 #ifdef VILE_OLE
 		case 'O':
 		    if (param[1] == 'r')
@@ -646,9 +635,6 @@ MainProgram(int argc, char *argv[])
 	} else if (*param != EOS) {
 
 	    /* must be a filename */
-#if OPT_ENCRYPT
-	    cryptkey = (*startkey != EOS) ? startkey : 0;
-#endif
 	    /* set up a buffer for this file */
 	    bp = getfile2bp(param, FALSE, TRUE);
 	    if (bp) {
@@ -659,9 +645,6 @@ MainProgram(int argc, char *argv[])
 		    havename = param;
 		}
 	    }
-#if OPT_ENCRYPT
-	    cryptkey = 0;
-#endif
 	}
     }
 
@@ -785,13 +768,6 @@ MainProgram(int argc, char *argv[])
 # endif				/* SYS_UNIX */
 #endif /* DISP_X11 */
 
-#if OPT_ENCRYPT
-	if (*startkey != EOS) {
-	    strcpy(bp->b_cryptkey, startkey);
-	    make_local_b_val(bp, MDCRYPT);
-	    set_b_val(bp, MDCRYPT, TRUE);
-	}
-#endif
 	if (ffp != 0) {
 	    (void) slowreadf(bp, &nline);
 	    set_rdonly(bp, bp->b_fname, MDREADONLY);

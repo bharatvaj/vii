@@ -10,7 +10,6 @@
 #define CC_HAS_PROTOS 1
 #define DECL_ENVIRON 1
 #define DISP_TERMCAP 1
-#define FEWNAMES 1
 #define GETPGRP_VOID 1
 #define HAVE_ACCESS 1
 #define HAVE_ALARM 1
@@ -30,6 +29,7 @@
 #define HAVE_GETPASS 1
 #define HAVE_GETTIMEOFDAY 1
 #define HAVE_GETWD 1
+#define HAVE_ICONV 1
 #define HAVE_INTTYPES_H 1
 #define HAVE_ISBLANK 1
 #define HAVE_ISWBLANK 1
@@ -110,11 +110,14 @@
 #define HAVE_X11_XPOLL_H 1
 #define HAVE__NC_FREEALL 1
 #define HAVE___VA_COPY 1
+#define ICONV_CONST 
 #define LOCALE 1
 #define MISSING_EXTERN_ENVIRON 1
 #define MISSING_EXTERN_TGETINT 1
 #define MISSING_EXTERN_TPARAM 1
 #define NEED_TERM_H 1
+#define OPT_ICONV_FUNCS 1
+#define OPT_LOCALE 1
 #define OPT_SHELL 0
 #define OUTC_RETURN 1
 #define RETSIGTYPE void
@@ -122,7 +125,6 @@
 #define SETPGRP_VOID 1
 #define SIGRET /*do nothing*/
 #define SIGT RETSIGTYPE
-#define SMALLER 1
 #define SPELL_OPTS "-x list"
 #define SPELL_PROG "aspell"
 #define STDC_HEADERS 1

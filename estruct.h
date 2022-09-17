@@ -715,15 +715,6 @@ typedef unsigned short	mode_t;
 #endif
 
 /*
- * Unix vi-style file encryption is available only on some platforms
- */
-#ifdef HAVE_CRYPT
-#define OPT_ENCRYPT     !SMALLER
-#else
-#define OPT_ENCRYPT     0
-#endif
-
-/*
  * Symbols that turn on tables related to OPT_ENUM_MODES in nefsms.h
  */
 #define OPT_COLOR_SCHEMES          (OPT_ENUM_MODES && !SMALLER && OPT_COLOR)
@@ -2184,9 +2175,6 @@ typedef struct	BUFFER {
 #endif
 #if OPT_CURTOKENS
 	struct VAL buf_fname_expr;	/* $buf-fname-expr		*/
-#endif
-#if OPT_ENCRYPT
-	char	b_cryptkey[NKEYLEN];	/* encryption key		*/
 #endif
 #if SYS_UNIX
 	FUID	b_fileuid;		/* file unique id (dev/ino on unix) */

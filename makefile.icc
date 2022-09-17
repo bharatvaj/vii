@@ -101,7 +101,6 @@ VILE_DEPS =  \
  tags$O \
  tbuff$O \
  termio$O \
- ucrypt$O \
  undo$O \
  version$O \
  vl_ctype$O \
@@ -206,8 +205,6 @@ tags$O:		$(VILE_CFG) tags.c 	btree.h
 tbuff$O:	$(VILE_CFG) tbuff.c
 
 termio$O:	$(VILE_CFG) termio.c 	nefunc.h
-
-ucrypt$O:	$(VILE_CFG) ucrypt.c
 
 undo$O:		$(VILE_CFG) undo.c
 

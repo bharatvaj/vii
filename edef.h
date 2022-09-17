@@ -278,10 +278,6 @@ decl_uninit( WINDOW *swindow );		/* saved window pointer		*/
 decl_init( TBUFF *with_prefix, 0 );	/* prefix set by "~with"	*/
 #endif
 
-#if OPT_ENCRYPT
-decl_init( char * cryptkey, 0 );	/* top-level crypt-key, if any	*/
-#endif
-
 decl_uninit( int dotcmdactive );	/* current dot command mode	*/
 decl_init( int dotcmdarg, FALSE );	/* was there an arg to '.'? */
 decl_uninit( short dotcmdkreg );	/* original dot command kill reg */

@@ -41,7 +41,7 @@ INSTALL_DATA	= ${INSTALL} -m 644
 
 EXTRA_CFLAGS	= 
 CFLAGS		= -g -O2 $(EXTRA_CFLAGS)
-LIBS		=   -ltermcap -lcurses  
+LIBS		=  -liconv -ltermcap -lcurses  
 
 LINT		= lint
 CTAGS		= ctags
@@ -144,7 +144,6 @@ ALLTOOLS = $(MAKFILES) mktbls.c cmdtbl modetbl \
 
 # these are normal editable headers
 HDRS = \
-	api.h \
 	blist.h \
 	btree.h \
 	chgdfunc.h \
@@ -261,13 +260,13 @@ TEXTFILES = README README.PC \
 	CHANGES.R7 CHANGES.R6 CHANGES.R5 CHANGES.R4 CHANGES.R3 \
 	buglist revlist patchlev.h COPYING
 
-VILESRC = main.c api.c basic.c bind.c btree.c btree.c buffer.c csrch.c \
+VILESRC = main.c basic.c bind.c btree.c btree.c buffer.c csrch.c \
 	display.c dumbterm.c eval.c exec.c externs.c fences.c file.c \
 	filec.c fileio.c finderr.c glob.c globals.c \
 	history.c input.c insert.c isearch.c itbuff.c lckfiles.c line.c map.c \
 	modes.c msgs.c npopen.c nullterm.c oneliner.c opers.c path.c random.c \
 	regexp.c region.c search.c select.c spawn.c statevar.c tags.c \
-	tbuff.c termio.c ucrypt.c undo.c vl_ctype.c version.c \
+	tbuff.c termio.c undo.c vl_ctype.c version.c \
 	watch.c window.c word.c wordmov.c xterm.c
 
 ALLSRC = $(VILESRC) $(SCREENS) $(OTHERSRC) $(HDRS)
@@ -306,7 +305,6 @@ BUILTLIBS =
 #	spawn.o
 #	statevar.o
 #	trace.o
-#	ucrypt.o
 #	xterm.o
 OBJ =	$(SCREEN)$o \
 	main$o basic$o bind$o blist$o buffer$o csrch$o \
@@ -316,7 +314,7 @@ OBJ =	$(SCREEN)$o \
 	modes$o msgs$o nullterm$o oneliner$o opers$o path$o random$o \
 	regexp$o region$o search$o tags$o \
 	tbuff$o termio$o undo$o version$o vl_ctype$o \
-	watch$o window$o word$o wordmov$o 
+	watch$o window$o word$o wordmov$o  btree$o history$o isearch$o select$o statevar$o xterm$o charsets$o eightbit$o wcwidth$o
 OBJ2 =	
 
 # This should be "$(OBJ:$o=.c)", but IRIX64's make (and some not very old
@@ -772,7 +770,6 @@ perl.c: $(srcdir)/perl.xs $(srcdir)/ptypemap
 
 $(OBJ): estruct.h proto.h edef.h $(BUILTHDRS) config.h
 
-api$o :		api.h
 bind$o :	btree.h
 blist$o :	blist.h
 btree$o :	btree.h
@@ -783,7 +780,6 @@ glob$o :	dirstuff.h
 main$o :	chgdfunc.h
 modes$o :	chgdfunc.h
 path$o :	dirstuff.h
-perl$o :	api.h
 random$o :	dirstuff.h
 statevar$o :	patchlev.h
 tags$o :	btree.h

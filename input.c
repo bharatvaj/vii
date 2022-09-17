@@ -196,8 +196,8 @@ mlyesno(const char *prompt)
     return result;
 }
 
-/*
- * Ask a simple question in the message line.  Return the single char response
+ 
+/* Ask a simple question in the message line.  Return the single char response
  * if it was one of the valid responses.
  */
 int

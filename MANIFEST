@@ -16,8 +16,6 @@ README.PC                       instructions for PC's (MS-DOS, etc.)
 README.VMS                      instructions for VAX's (OpenVMS)
 aclocal.m4                      VILE-specific autoconf macros
 ansi.c                          ANSI terminal driver
-api.c                           nvi-like api to perl and tcl
-api.h                           interface of api.c
 basic.c                         basic cursor-movement
 bind.c                          key-bindings & low-level command-completion
 blist.c                         binary-searches for pre-sorted arrays
@@ -114,7 +112,6 @@ termio.c                        low-level terminal I/O support
 test_io.c                       I/O stub for testing linkage requirements
 trace.c                         development: trace to logfile
 trace.h                         development: trace to logfile
-ucrypt.c                        interface to Unix crypt(1)
 undo.c                          support for "undo"
 version.c                       version & usage messages
 version.sh                      print version for current sources

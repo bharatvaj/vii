@@ -35,7 +35,7 @@ SRC = 	main.c $(DISP_SRC) \
 	line.c modes.c msgs.c npopen.c nullterm.c oneliner.c opers.c \
 	path.c random.c regexp.c \
 	region.c search.c select.c spawn.c statevar.c \
-	tags.c tbuff.c termio.c ucrypt.c undo.c vl_ctype.c \
+	tags.c tbuff.c termio.c undo.c vl_ctype.c \
 	version.c window.c word.c wordmov.c map.c djhandl.c
 
 ALL	= vile$x

@@ -65,7 +65,7 @@ SRC = 	main.c $(SCREEN).c \
 	line.c modes.c msgs.c nullterm.c oneliner.c opers.c \
 	path.c random.c regexp.c \
 	region.c search.c select.c spawn.c statevar.c \
-	tags.c tbuff.c termio.c ucrypt.c undo.c vl_ctype.c \
+	tags.c tbuff.c termio.c undo.c vl_ctype.c \
 	version.c w32cmd.c w32cbrd.c w32misc.c w32oo.cpp w32pipe.c \
 	wcwidth.c window.c word.c wordmov.c map.c
 
@@ -79,7 +79,7 @@ OBJ = 	main.obj $(SCREEN).obj \
 	line.obj modes.obj msgs.obj nullterm.obj oneliner.obj opers.obj \
 	path.obj random.obj regexp.obj \
 	region.obj search.obj select.obj spawn.obj statevar.obj \
-	tags.obj tbuff.obj termio.obj ucrypt.obj undo.obj vl_ctype.obj \
+	tags.obj tbuff.obj termio.obj undo.obj vl_ctype.obj \
 	version.obj w32cmd.obj w32cbrd.obj w32misc.obj w32oo.obj w32pipe.obj \
 	wcwidth.obj window.obj word.obj wordmov.obj map.obj $(EXTRA)
 
@@ -130,7 +130,6 @@ clean:
 
 VILEHDRS = $(BUILTHDRS) estruct.h
 
-api.obj :	$(VILEHDRS)	api.h
 $(SCREEN).obj :	$(VILEHDRS)	winvile.h pscreen.h patchlev.h
 basic.obj :	$(VILEHDRS)
 bind.obj :	$(VILEHDRS)
@@ -165,7 +164,6 @@ nullterm.obj :	$(VILEHDRS)
 oneliner.obj :	$(VILEHDRS)
 opers.obj :	$(VILEHDRS)
 path.obj :	$(VILEHDRS)	dirstuff.h
-perl.obj :	$(VILEHDRS)	api.h
 random.obj :	$(VILEHDRS)	dirstuff.h
 regexp.obj :	$(VILEHDRS)
 region.obj :	$(VILEHDRS)
@@ -177,7 +175,6 @@ tags.obj :	$(VILEHDRS)	btree.h
 tbuff.obj :	$(VILEHDRS)
 termio.obj :	$(VILEHDRS)
 trace.obj :	$(VILEHDRS)
-ucrypt.obj :	$(VILEHDRS)
 undo.obj :	$(VILEHDRS)
 version.obj :	$(VILEHDRS)	patchlev.h
 vl_ctype.obj :	$(VILEHDRS)	vl_ctype.h

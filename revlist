@@ -2,8 +2,6 @@ revlist for vile, version v9_8
 --------------------------------------------------------------------------------
 aclocal.m4	1.223
 ansi.c	1.52
-api.c	1.46
-api.h	1.14
 AUTHORS	1.2
 basic.c	1.165
 bind.c	1.350
@@ -114,7 +112,6 @@ termio.c	1.220
 test_io.c	1.2
 trace.c	1.102
 trace.h	1.36
-ucrypt.c	1.17
 undo.c	1.101
 version.c	1.74
 version.sh	1.1

@@ -2268,7 +2268,7 @@ static int
 show_BufferList(BUFFER *bp GCC_UNUSED)
 {
     int status;
-    if ((status = (!updating_list++ != 0)) != FALSE) {
+    if ((status = (!(updating_list++ != 0))) != FALSE) {
 	this_bp = curbp;
 	that_bp = find_alt();
 	status = liststuff(BUFFERLIST_BufName, FALSE,
@@ -2635,15 +2635,6 @@ bfind(const char *bname, UINT bflag)
 	    bp->b_fname = NULL;
 	    ch_fname(bp, "");
 	    fileuid_invalidate(bp);
-#if OPT_ENCRYPT
-	    if (!b_is_temporary(bp)
-		&& cryptkey != 0 && *cryptkey != EOS) {
-		(void) strcpy(bp->b_cryptkey, cryptkey);
-		make_local_b_val(bp, MDCRYPT);
-		set_b_val(bp, MDCRYPT, TRUE);
-	    } else
-		bp->b_cryptkey[0] = EOS;
-#endif
 	    bp->b_udstks[0] = bp->b_udstks[1] = 0;
 	    bp->b_ulinep = 0;
 	    bp->b_udtail = 0;

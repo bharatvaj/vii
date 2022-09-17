@@ -1600,11 +1600,6 @@ multimotionrectangle	MOTION		OPT_SELECTIONS
 	"quoted-rectangular-motion"	!FEWNAMES
 	'^A-q'
 	<start (and end) a rectangular selection using multiple motions (3) >
-vl_setkey	NONE			OPT_ENCRYPT
-	"set-crypt-key"
-	"X"
-	'^X-X'
-	<set the encryption key on the current buffer>
 setlocmode	EXRCOK|EXTRA
 	"setl"
 	"set-mode"			!FEWNAMES

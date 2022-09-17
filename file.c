@@ -904,9 +904,6 @@ ff_load_directory(char *fname)
 static int
 kifile(char *fname)
 {
-#if OPT_ENCRYPT
-    BUFFER *bp = curbp;
-#endif
     int s;
     int nline;
     size_t i;
@@ -926,9 +923,6 @@ kifile(char *fname)
     } else {
 
 	nline = 0;
-#if OPT_ENCRYPT
-	if ((s = vl_resetkey(bp, fname)) == TRUE)
-#endif
 	{
 	    mlwrite("[Reading...]");
 	    CleanToPipe(FALSE);
@@ -1449,13 +1443,7 @@ quickreadf(BUFFER *bp, int *nlinep)
 	rc = FIONUL;
     } else if ((buffer = castalloc(UCHAR, request + 1)) == NULL) {
 	rc = FIOMEM;
-    }
-#if OPT_ENCRYPT
-    else if ((rc = vl_resetkey(bp, (const char *) buffer)) != TRUE) {
-	free(buffer);
-    }
-#endif
-    else if (ffread((char *) buffer, request, &length) < 0
+    } else if (ffread((char *) buffer, request, &length) < 0
 #if !SYS_VMS
 	/*
 	 * For most systems, the advertised size of the file will match the
@@ -1470,13 +1458,6 @@ quickreadf(BUFFER *bp, int *nlinep)
 	mlerror("reading");
 	rc = FIOERR;
     } else {
-#if OPT_ENCRYPT
-	if (b_val(bp, MDCRYPT)
-	    && bp->b_cryptkey[0]) {	/* decrypt the file */
-	    vl_setup_encrypt(bp->b_cryptkey);
-	    vl_encrypt_blok((char *) buffer, (UINT) length);
-	}
-#endif
 #if OPT_MULTIBYTE
 	decode_bom(bp, buffer, &length);
 	deduce_charset(bp, buffer, &length, TRUE);
@@ -1575,11 +1556,6 @@ readin(char *fname, int lockfl, BUFFER *bp, int mflg)
     WINDOW *wp;
     int s;
     int nline;
-#if OPT_ENCRYPT
-    int local_crypt = valid_buffer(bp)
-    && is_local_val(bp->b_values.bv, MDCRYPT);
-#endif
-
     TRACE((T_CALLED "readin(fname=%s, lockfl=%d, bp=%p, mflg=%d)\n",
 	   fname, lockfl, (void *) bp, mflg));
 
@@ -1597,14 +1573,6 @@ readin(char *fname, int lockfl, BUFFER *bp, int mflg)
 
     if ((s = bclear(bp)) != TRUE)	/* Might be old.    */
 	returnCode(s);
-
-#if OPT_ENCRYPT
-    /* bclear() gets rid of local flags */
-    if (local_crypt) {
-	make_local_b_val(bp, MDCRYPT);
-	set_b_val(bp, MDCRYPT, TRUE);
-    }
-#endif
 
     b_clr_flags(bp, BFINVS | BFCHG);
     ch_fname(bp, fname);
@@ -1784,10 +1752,6 @@ slowreadf(BUFFER *bp, int *nlinep)
 
     TRACE((T_CALLED "slowreadf(buffer=%s, file=%s)\n", bp->b_bname, bp->b_fname));
 
-#if OPT_ENCRYPT
-    if ((s = vl_resetkey(bp, bp->b_fname)) != TRUE)
-	returnCode(s);
-#endif
     b_set_counted(bp);		/* make 'addline()' do the counting */
     b_set_reading(bp);
     make_local_b_val(bp, MDDOS);	/* keep it local, if not */
@@ -2287,11 +2251,6 @@ actually_write(REGION * rp, char *fn, int msgf, BUFFER *bp, int forced, int enco
     }
 #endif
 
-#if OPT_ENCRYPT
-    if ((s = vl_resetkey(bp, fn)) != TRUE)
-	returnCode(s);
-#endif
-
     /* open writes error message, if needed */
     if (ffwopen(fn, forced) != FIOSUC)
 	returnCode(FALSE);
@@ -2527,9 +2486,6 @@ write_enc_region(void)
 int
 kwrite(char *fn, int msgf)
 {
-#if OPT_ENCRYPT
-    BUFFER *bp = curbp;
-#endif
     KILL *kp;			/* pointer into kill register */
     int nline;
     B_COUNT nchar;
@@ -2544,10 +2500,6 @@ kwrite(char *fn, int msgf)
 	    mlforce("Nothing to write");
 	return FALSE;		/* not an error, just nothing */
     }
-#if OPT_ENCRYPT
-    if ((s = vl_resetkey(bp, fn)) != TRUE)
-	return s;
-#endif
     if ((s = ffwopen(fn, FALSE)) != FIOSUC) {	/* Open writes message. */
 	return FALSE;
     }
@@ -2663,10 +2615,6 @@ ifile(char *fname, int belowthisline, FILE *haveffp)
 	    /* special case: contents are already added */
 	    goto out;
 	}
-#endif
-#if OPT_ENCRYPT
-	if ((status = vl_resetkey(bp, fname)) != TRUE)
-	    returnCode(status);
 #endif
 	mlwrite("[Inserting...]");
 	CleanToPipe(FALSE);

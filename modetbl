@@ -104,7 +104,6 @@ bool							# MD prefix
 	"check-modtime" CHK_MODTIME	0		!SMALLER # check buffer-modtime
 	"CIndent"	CINDENT		0		# c-style indent
 	"cmode"		CMOD		chgd_win_mode	!OPT_MAJORMODE # C indentation and fence match
-	"crypt"		CRYPT		chgd_major	OPT_ENCRYPT	# encrytion mode active
 	"dos"		DOS		chgd_dos_mode	# "dos" mode -- lines end in crlf
 	"FilterMsgs"	FILTERMSGS	0		OPT_MAJORMODE&&OPT_FILTER # Name of syntax-filter
 	"HighLight"	HILITE		chgd_filter	OPT_MAJORMODE # true if we enable syntax highlighting
@@ -294,7 +293,6 @@ string
 	"cfgopts"	CFGOPTS		1		"'interesting' compiled options (comma-delimited)"
 	"cfilname"	CFNAME		1		"current file name"
 	"cmd-motion"	CMD_MOTION	OPT_EVAL&&OPT_PROCEDURES  "motion for operator"
-	"cryptkey"	CRYPTKEY	OPT_ENCRYPT	"write-only encryption-key"
 	"cwd"		CWD		OPT_SHELL	"current directory"
 	"directory"	DIRECTORY	OPT_SHELL	"controls location of temp-files"
 	"encoding"	ENCODING	OPT_LOCALE	"8-bit encoding associated with buffer contents"

@@ -285,9 +285,6 @@ do_filter(FILE *inputs GCC_UNUSED)
 
 #ifdef filter_def		/* built-in filter? */
     ffp = ChopFP;
-#if OPT_ENCRYPT
-    ffstatus = file_is_pipe;
-#endif
     for_each_line(lp, curbp) {
 	ffputline(lp->l_text, llength(lp), "\n");
     }

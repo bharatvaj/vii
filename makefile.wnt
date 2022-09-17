@@ -149,38 +149,6 @@ OLELIBS  = uuid.lib oleaut32.lib comsupp.lib
 EXTRA    = 
 !endif
 
-!IF "$(CFG)" == "winvile-with-perl" || "$(CFG)" == "vile-with-perl"
-#
-# CPAN's most recent X86 binary perl distribution, dated 12-Nov-97, does
-# not export perl's record separator symbol ($/).  Consequently, the
-# preprocessor macro HAVE_BROKEN_PERL_RS must be defined to permit
-# successful linking of perl-embedded versions of the editor.  When this
-# macro is defined, READLINE performance in perl.xs may be adversely
-# affected.  Comment out the makefile macro "PERLFIX" if your version of
-# perl properly exports $/ .
-#
-PERLFIX  = -DHAVE_BROKEN_PERL_RS
-PERLOPTS = -DOPT_PERL=1 -I$(VILE_PERL_INC) $(PERLFIX)
-PERLOBJS = api.obj perl.obj watch.obj
-PERLSRCS = api.c perl.c watch.c
-PERLCFG  = $(THE_PERLCFG)
-#
-# The following perl scripts, stored in the subdirectory .\perl, are
-# known to work under win32:
-#
-PERL_SCRIPTS = \
-	perl/Breadcrumbs.pm \
-	perl/CaptHook.pm \
-	perl/Glob2re.pm \
-	perl/Vile/Manual.pm \
-	perl/Vile/exporter.pm \
-	perl/Visit.pm \
-	perl/directory.pm \
-	perl/dirlist.pm \
-	perl/hgrep.pm \
-	perl/search.pm
-!ENDIF
-
 MYLIBS	=
 
 # these headers are built by the mktbls program from the information in cmdtbl
@@ -220,7 +188,7 @@ SRC = 	main.c $(SCREEN).c \
 	line.c modes.c msgs.c nullterm.c oneliner.c opers.c \
 	path.c random.c regexp.c \
 	region.c search.c select.c spawn.c statevar.c \
-	tags.c tbuff.c termio.c ucrypt.c undo.c vl_ctype.c \
+	tags.c tbuff.c termio.c undo.c vl_ctype.c \
 	version.c window.c word.c wordmov.c map.c \
 	w32cbrd.c w32cmd.c w32misc.c w32oo.cpp w32pipe.c \
 	wcwidth.c $(PERLSRCS) \
@@ -235,7 +203,7 @@ OBJ = 	main.obj $(SCREEN).obj \
 	line.obj modes.obj msgs.obj nullterm.obj oneliner.obj opers.obj \
 	path.obj random.obj regexp.obj \
 	region.obj search.obj select.obj spawn.obj statevar.obj \
-	tags.obj tbuff.obj termio.obj ucrypt.obj undo.obj vl_ctype.obj \
+	tags.obj tbuff.obj termio.obj undo.obj vl_ctype.obj \
 	version.obj window.obj word.obj wordmov.obj map.obj \
 	w32cbrd.obj w32cmd.obj w32misc.obj w32oo.obj w32pipe.obj \
 	wcwidth.obj $(PERLOBJS) \
@@ -398,7 +366,6 @@ all :: $(SCRIPTS) vile.hlp
 	- !copy $** "$(VILE_STARTUP_PATH)"\$(**F)
 !endif
 
-api.obj :	api.h
 bind.obj :	btree.h
 blist.obj :	blist.h
 btree.obj :	btree.h
@@ -409,7 +376,6 @@ main.obj :	chgdfunc.h
 modes.obj :	chgdfunc.h
 ntwinio.obj :	winvile.h pscreen.h patchlev.h makeargv.h
 path.obj :	dirstuff.h
-perl.obj :	api.h
 random.obj :	dirstuff.h
 statevar.obj :	patchlev.h
 tags.obj :	btree.h
